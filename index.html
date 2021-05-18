@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+    <h1>The Weather App</h1>
+    </header>,
+    
+    <div class="main">
+      <div id="search">
+        <label for="city">City Name</label>
+        <input type="text" id="city">
+        <button type="button">Show Weather</button>
+      </div>
+      <div id="load">Loading ...</div>
+      <div id="weather">
+        <h1 id="weatherCity">City Name</h1>
+        <div id="weatherDescription">weatherDescription</div>
+        <div id="weatherTemperature">Temperature</div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <!-- <script>
+      System.import('app.js');
+    </script> -->
+  </body>
+</html>
