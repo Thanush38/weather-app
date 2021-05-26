@@ -1,19 +1,19 @@
 import * as ELEMENTS from './elements.js';
 import {Http} from './http.js';
 import {WeatherData, WEATHER_PROXY_HANDLER} from './weather-data.js';
+//this is mine
+const APP_ID = 'e0b9da7f75ba71c68b543cba505cba10';
 
-const APP_ID = '4d1032d13b26dd5bd552092a7b5a8f93'
 ELEMENTS.ELEMENT_SEARCH_BUTTON.addEventListener('click', searchWeather);
 
 function searchWeather() {
     const CITY_NAME = ELEMENTS.ELEMENT_SEARCHED_CITY.value.trim();
-    if (CITY_NAME.length == 0){
-        return alert('please enter a city name');
+    if (CITY_NAME.length == 0) {
+        return alert('Please enter a city name');
     }
     ELEMENTS.ELEMENT_LOADING_TEXT.style.display = 'block';
-    ELEMENTS.ELEMENT_LOADING_TEXT.style.display = 'nonw';
-    const URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + CITY_NAME + '&units=metric&appid=' + APP_ID;
-
+    ELEMENTS.ELEMENT_WEATHER_BOX.style.display = 'none';
+    const URL = 'http://api.openweathermap.org/data/2.5/weather?q=' + CITY_NAME + '&units=metric&appid=' + APP_ID;
     Http.fetchData(URL)
     .then(responseData => {
         const WEATHER_DATA = new WeatherData(CITY_NAME, responseData.weather[0].description.toUpperCase());
@@ -21,14 +21,16 @@ function searchWeather() {
         WEATHER_PROXY.temperature = responseData.main.temp;
         updateWeather(WEATHER_PROXY);
     })
-    .catch(error => alert ('error'));
-};
-
+    .catch(error => alert(error));
+}
 
 function updateWeather(weatherData) {
+    console.log(weatherData);
     ELEMENTS.ELEMENT_WEATHER_CITY.textContent = weatherData.cityName;
     ELEMENTS.ELEMENT_WEATHER_DESCRIPTION.textContent = weatherData.description;
     ELEMENTS.ELEMENT_WEATHER_TEMPERATURE.textContent = weatherData.temperature;
-    ElEMENTS.ELEMENTS.ELEMENT_WEATHER_BOX.style.display = 'block';
+
+    ELEMENTS.ELEMENT_LOADING_TEXT.style.display = 'none';
+    ELEMENTS.ELEMENT_WEATHER_BOX.style.display = 'block';
 
 }
