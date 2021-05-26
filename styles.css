@@ -85,3 +85,7 @@ font-family: inherit
   margin: 100px auto auto;
   display: none;
 }
+
+.info {
+  padding-top: 50px;
+}
